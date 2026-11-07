@@ -1420,7 +1420,8 @@
         "name": "Dryness",
         "state": {
           "ready_to_wear": "Ready to wear",
-          "storage": "Storage"
+          "storage": "Storage",
+          "ready_to_iron": "Ready to iron"
         }
       },
       "dryer_temperature_control": {
@@ -1462,7 +1463,9 @@
           "stain_wash": "Stain wash",
           "sport_clothes": "Sportswear",
           "yoga": "Yoga clothes",
-          "quick_drying_clothes": "Quick-drying clothes"
+          "quick_drying_clothes": "Quick-drying clothes",
+          "greatwaves": "GREATWAVES",
+          "cloud_program": "Cloud program"
         }
       },
       "washer_temperature_control": {
@@ -1473,7 +1476,8 @@
           "30": "30 °C",
           "40": "40 °C",
           "60": "60 °C",
-          "95": "95 °C"
+          "95": "95 °C",
+          "90": "90℃"
         }
       },
       "washer_spin_speed_control": {

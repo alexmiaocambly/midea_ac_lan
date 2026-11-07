@@ -1306,7 +1306,8 @@
         "name": "烘干度",
         "state": {
           "ready_to_wear": "即穿",
-          "storage": "储藏"
+          "storage": "储藏",
+          "ready_to_iron": "即熨"
         }
       },
       "dryer_temperature_control": {
@@ -1348,7 +1349,9 @@
           "stain_wash": "特渍洗",
           "sport_clothes": "运动服",
           "yoga": "瑜伽服",
-          "quick_drying_clothes": "速干衣"
+          "quick_drying_clothes": "速干衣",
+          "greatwaves": "GREATWAVES",
+          "cloud_program": "云程序"
         }
       },
       "washer_temperature_control": {
@@ -1359,7 +1362,8 @@
           "30": "30℃",
           "40": "40℃",
           "60": "60℃",
-          "95": "95℃"
+          "95": "95℃",
+          "90": "90℃"
         }
       },
       "washer_spin_speed_control": {
