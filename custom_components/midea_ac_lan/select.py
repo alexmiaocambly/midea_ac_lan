@@ -6,6 +6,7 @@ from homeassistant.components.select import SelectEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_DEVICE_ID, CONF_SWITCHES, Platform
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from midealan.device import MideaDevice
 
@@ -87,6 +88,14 @@ class MideaSelect(MideaEntity, SelectEntity):
         return cast("list", getattr(self._device, self._options_name))
 
     @property
+    def extra_state_attributes(self) -> dict[str, Any] | None:
+        """Expose whether a readable-but-locked option can be changed now."""
+        lock_attribute = self._config.get("available_attribute")
+        if not self._config.get("readable_when_locked") or not lock_attribute:
+            return None
+        return {"editable": bool(self._device.get_attribute(lock_attribute))}
+
+    @property
     def current_option(self) -> str | None:
         """Currently selected option."""
         value = self._device.get_attribute(self._state_attribute_key)
@@ -119,6 +128,14 @@ class MideaSelect(MideaEntity, SelectEntity):
             If a mapped option is not supported.
 
         """
+        lock_attribute = self._config.get("available_attribute")
+        if (
+            self._config.get("readable_when_locked")
+            and lock_attribute
+            and not self._device.get_attribute(lock_attribute)
+        ):
+            msg = "Settings can only be changed while the appliance is in standby"
+            raise HomeAssistantError(msg)
         if self._config.get("set_message") == "e1_work_mode":
             self._select_e1_work_mode(option)
             return

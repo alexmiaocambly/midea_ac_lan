@@ -97,6 +97,9 @@ LAUNDRY_SELECT_CONFIG = {
     **LAUNDRY_PARAMETER_CONFIG,
     "type": Platform.SELECT,
     "options_method": "get_parameter_options",
+    # Keep reporting the running cycle's values; writes still need standby
+    # (exposed as the ``editable`` state attribute).
+    "readable_when_locked": True,
 }
 
 # Reservations remain editable while queued, independently of ordinary parameters.

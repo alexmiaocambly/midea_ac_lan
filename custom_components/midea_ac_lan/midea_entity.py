@@ -154,7 +154,11 @@ class MideaEntity(Entity):
         if not self._device.available:
             return False
         state_attribute = self._config.get("available_attribute")
-        if state_attribute and not self._device.get_attribute(state_attribute):
+        if (
+            state_attribute
+            and not self._config.get("readable_when_locked")
+            and not self._device.get_attribute(state_attribute)
+        ):
             return False
         value_attribute = self._config.get("available_value_attribute")
         return (
